@@ -15,14 +15,11 @@ jobs:
       id-token: write
       contents: write
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Install mdbook
-        run: |
-          mkdir mdbook
-          curl -sSL https://github.com/rust-lang/mdBook/releases/download/v0.4.22/mdbook-v0.4.22-x86_64-unknown-linux-gnu.tar.gz | tar -xz --directory=./mdbook
-          echo `pwd`/mdbook >> $GITHUB_PATH
+        run: curl -sSL https://github.com/rust-lang/mdBook/releases/download/v0.4.22/mdbook-v0.4.22-x86_64-unknown-linux-gnu.tar.gz | tar -xz
       - name: Build book
-        run: mdbook build
+        run: ./mdbook build
       - uses: rust-lang/simpleinfra/github-actions/static-websites@master
         with:
           deploy_dir: book
