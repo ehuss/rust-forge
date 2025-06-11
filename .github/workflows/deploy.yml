@@ -1,10 +1,6 @@
 name: Deploy To GitHub Pages
 on:
-  schedule:
-    - cron: '0 22 * * *'
   push:
-    branches:
-      - master
 
 jobs:
   build:
@@ -20,7 +16,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./book
+          path: ./book/html
 
   deploy:
     if: github.repository_owner == 'rust-lang'
